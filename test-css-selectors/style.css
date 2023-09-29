@@ -1,0 +1,13 @@
+span {
+    background-color: yellow;
+}
+
+strong, em {
+    color: rebeccapurple;
+}
+h1 {
+}
+article *:first-child {
+    font-weight: bold;
+  }
+  
