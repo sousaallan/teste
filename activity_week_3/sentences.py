@@ -3,6 +3,8 @@ import random
 def main():
     quantity = int(input("type (1) for a singular phrase or any other integreer for plural: "))
     tense = str(input("Type the verb tense of your phrase: (past), (present) or (future): "))
+    # Exceeding the Requirements: Idea: level of expression indicate if the phrase has exclamation point and, if yes, how many?
+    expression = int(input("Which level of excitement, enthusiasm, strong, emotions or surprise does your phrase have? (0-3)  "))
     phrase = []
     determiner = get_determiner(quantity)
     phrase.append(determiner)
@@ -10,7 +12,11 @@ def main():
     phrase.append(noun)
     verb = get_verb(quantity, tense)
     phrase.append(verb)
-    print(f"{phrase[0]} {phrase[1]} {phrase[2]}.")
+    prepositional_phrase = get_prepositional_phrase(quantity)
+    phrase.append(prepositional_phrase)
+    pontuation = get_pontuaction(expression)
+    phrase.append(pontuation)
+    print(f"{phrase[0]} {phrase[1]} {phrase[2]} {phrase[3]}{phrase[4]}")
 
 def get_determiner(quantity):
     """Return a randomly chosen determiner. A determiner is
@@ -106,6 +112,61 @@ def get_verb(quantity, tense):
 
     # Randomly choose and return a noun
     word = random.choice(words)
+    return word
+
+def get_preposition():
+    """Return a randomly chosen preposition
+    from this list of prepositions:
+        "about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"
+
+    Return: a randomly chosen preposition.
+    """
+    words = ["about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"]
+    # Randomly choose and return a noun
+    word = random.choice(words)
+    return word
+
+def get_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed
+    of three words: a preposition, a determiner, and a
+    noun by calling the get_preposition, get_determiner,
+    and get_noun functions.
+
+    Parameter
+        quantity: an integer that determines if the
+            determiner and noun in the prepositional
+            phrase returned from this function should
+            be single or pluaral.
+    Return: a prepositional phrase.
+    """
+    if quantity == 1:
+        prepositional_phrase = f"{get_preposition()} {get_determiner(1)} {get_noun(1)}"
+    else:
+        prepositional_phrase = f"{get_preposition()} {get_determiner(0)} {get_noun(0)}"
+
+    return prepositional_phrase
+
+def get_pontuaction(expression): #Exceeding the Requirements
+    if expression == 0:
+        word = "."
+    elif expression == 1:
+        word = "!"
+    elif expression == 2:
+        word = "!!"
+    elif expression == 3:
+        word = "!!!"
+    else:
+        word = "."
     return word
 main()
     
