@@ -1,3 +1,4 @@
+#5 - Exceeds requirements: Idea: level of expression indicate if the phrase has exclamation point and, if yes, how many?
 import random
 
 def main():
